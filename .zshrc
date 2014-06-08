@@ -18,6 +18,7 @@ alias zc="vim ~/.zshrc"
  DISABLE_AUTO_UPDATE="true"
 
 setopt autocd
+setopt dotglob
 export KEYTIMEOUT=1
 
 # Uncomment the following line to change how often to auto-update (in days).

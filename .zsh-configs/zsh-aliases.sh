@@ -2,6 +2,8 @@ alias -s {js, css}=sublime
 alias -s {sh}=vim
 alias -s {mp4}=mplayer
 
+alias vc="vim ~/.vimrc"
+
 alias rz="source ~/.zshrc"
 alias za="vim ~/.zsh-configs/zsh-aliases.sh"
 # ~/.bashrc: executed by bash(1) for non-login shells.
