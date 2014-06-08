@@ -1,0 +1,23 @@
+#!bin/sh
+if [ -f $HOME/.Xdefaults ]; then
+	xrdb -merge $HOME/.Xdefaults
+fi
+
+nitrogen --restore &
+setxkbmap -layout 'us,ru' -option 'grp:caps_toggle'
+
+xsetroot -cursor_name left_ptr
+
+
+trayer --edge top --align right --SetDockType true --SetPartialStrut true \
+--expand true --width 11 --transparent true --alpha 0 --tint 0x000000 --height 19 &
+ 
+xsetroot -cursor_name left_ptr
+# Set the background color<
+xsetroot -solid midnightblue
+# Fire up apps
+if [ -x /usr/bin/nm-applet ] ; then
+    nm-applet --sm-disable &
+fi
+xbacklight -set 30
+gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh
