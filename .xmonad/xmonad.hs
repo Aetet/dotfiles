@@ -4,6 +4,7 @@
 import XMonad
 import XMonad.Actions.CopyWindow
 import XMonad.Hooks.SetWMName
+import XMonad.Layout.IndependentScreens
 import qualified XMonad.StackSet as W 
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
@@ -34,6 +35,23 @@ xmonad $ defaultConfig
       ((0, 0x1008FF12), spawn "amixer -D set Master toggle")
     , ((0, xK_Print), spawn "scrot -e 'mv $f ~/shots/'")
     , ((mod4Mask .|. shiftMask, xK_s), spawn "sudo /etc/acpi/sleep.sh")    
+    , ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
     , ((0, 0x1008FF11), spawn "amixer -q set Master 10%-")
     , ((0, 0x1008FF13), spawn "amixer -q set Master 10%+")
-	]
+	]  ++
+	[((m .|. mod4Mask, key), screenWorkspace sc >>= flip whenJust (windows . f)) -- Replace 'mod1Mask' with your mod key of choice.
+	       | (key, sc) <- zip [xK_w, xK_e, xK_r] [1,0,2] -- was [0..] *** change to match your screen order ***
+	       , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]])
+
+-- Let if
+-- --
+--
+
+    , ((0, xK_Print), spawn "scrot")
+    , ((mod4Mask, xK_q), spawn "xmonad --recompile; xmonad --restart")
+    , ((0, 0x1008FF11), spawn "amixer -q set Master 10%-")
+    , ((0, 0x1008FF13), spawn "amixer -q set Master 10%+")
+	]  ++
+	[((m .|. mod4Mask, key), screenWorkspace sc >>= flip whenJust (windows . f)) -- Replace 'mod1Mask' with your mod key of choice.
+	       | (key, sc) <- zip [xK_w, xK_e, xK_r] [1,0,2] -- was [0..] *** change to match your screen order ***
+	       , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]])
