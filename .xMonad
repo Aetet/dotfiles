@@ -3,21 +3,35 @@ if [ -f $HOME/.Xdefaults ]; then
 	xrdb -merge $HOME/.Xdefaults
 fi
 
+xrandr | grep 'VGA1 connected' | ifne xrandr --output VGA1 --auto --left-of LVDS1
+
+#Lock the screen
+xscreensaver-command -exit
+xscreensaver -no-splash &
+
+#background image
 nitrogen --restore &
+
+#switch ru, en by capslock
 setxkbmap -layout 'us,ru' -option 'grp:caps_toggle'
 
+#Cursor form
 xsetroot -cursor_name left_ptr
 
-
+#tray that flow by right top corner
 trayer --edge top --align right --SetDockType true --SetPartialStrut true \
 --expand true --width 11 --transparent true --alpha 0 --tint 0x000000 --height 19 &
  
-xsetroot -cursor_name left_ptr
-# Set the background color<
+# Set the background color
 xsetroot -solid midnightblue
-# Fire up apps
+
+# Net applet
 if [ -x /usr/bin/nm-applet ] ; then
     nm-applet --sm-disable &
 fi
+
+# backlight 
 xbacklight -set 30
-gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh
+
+
+
