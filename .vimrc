@@ -101,11 +101,6 @@ set hlsearch	     " highlighted search results
 set nu	             " line numbers
 set scrolloff=5	     " keep some more lines for scope
 
-" Disable swaps and backups
-set nobackup 	     " no backup files
-set nowritebackup    " only in case you don't want a backup file while editing
-set noswapfile 	     " no swap files
-
 " Hide some panels
 "set guioptions-=m   " remove menu bar
 set guioptions-=T    " remove toolbar
@@ -113,7 +108,7 @@ set guioptions-=T    " remove toolbar
 
 " Tab Settings
 set smarttab
-set tabstop=8
+set tabstop=2
 
 " Highlight characters past column 80
 augroup vimrc_autocmds
@@ -146,61 +141,6 @@ map <F2> :TaskList<CR> 	   " show pending tasks list
 
 " MiniBufExplorer settings
 map <C-q> :bd<CR> 	   " close current buffer
-
-"=====================================================
-" Python-mode settings
-"=====================================================
-" Python-mode
-" Activate rope
-" Keys:
-" K Show python docs
-" <Ctrl-Space> Rope autocomplete
-" <Ctrl-c>g Rope goto definition
-" <Ctrl-c>d Rope show documentation
-" <Ctrl-c>f Rope find occurrences
-" <Leader>b Set, unset breakpoint (g:pymode_breakpoint enabled)
-" [[ Jump on previous class or function (normal, visual, operator modes)
-" ]] Jump on next class or function (normal, visual, operator modes)
-" [M Jump on previous class or method (normal, visual, operator modes)
-" ]M Jump on next class or method (normal, visual, operator modes)
-let g:pymode_rope = 0
-let g:pymode_rope_completion = 0
-let g:pymode_rope_complete_on_dot = 0
-
-" Documentation
-let g:pymode_doc = 0
-let g:pymode_doc_key = 'K'
-"Linting
-let g:pymode_lint = 1
-let g:pymode_lint_checker = "pyflakes,pep8"
-let g:pymode_lint_ignore="E501,W601,C0110"
-" Auto check on save
-let g:pymode_lint_write = 1
-
-" Support virtualenv
-let g:pymode_virtualenv = 1
-
-" Enable breakpoints plugin
-let g:pymode_breakpoint = 1
-let g:pymode_breakpoint_key = '<leader>b'
-
-" Syntax highlighting
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
-let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-let g:pymode_syntax_space_errors = g:pymode_syntax_all
-
-" Don't autofold code
-let g:pymode_folding = 0
-
-" Get possibility to run Python code
-let g:pymode_run = 0
-
-"=====================================================
-" Jedi-vim
-"=====================================================
-" Disable choose first function/method at autocomplete
-let g:jedi#popup_select_first = 0
 
 "=====================================================
 " User hotkeys
@@ -287,17 +227,6 @@ nnoremap <M-i> <C-w>k		" Up
 nnoremap <M-k> <C-w>j		" Down
 nnoremap <M-j> <C-w>h		" Left
 nnoremap <M-l> <C-w>l 		" Right
-
-" ConqueTerm
-" Run Python-scripts at <F5>
-" let g:pymode_run_key = '<F5>'
-nnoremap <F5> :ConqueTermSplit zsh<CR>
-" and debug-mode for <F6>
-nnoremap <F6> :exe "ConqueTermSplit ipython " . expand("%")<CR>
-let g:ConqueTerm_StartMessages = 0
-let g:ConqueTerm_CloseOnEnd = 0
-" Python code check on PEP8
-autocmd FileType python map <buffer> <leader>8 :PymodeLint<CR>
 
 " Activate autocomplete at <Ctrl+Space>
 inoremap <C-space> <C-x><C-o>
