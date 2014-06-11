@@ -3,6 +3,7 @@ alias -s {sh}=vim
 alias -s {mp4}=mplayer
 
 alias vc="vim ~/.vimrc"
+alias nd="node makeupd/index.js"
 
 alias rz="source ~/.zshrc"
 alias za="vim ~/.zsh-configs/zsh-aliases.sh"

@@ -1,3 +1,9 @@
+added_keys=`ssh-add -l`
+
+if [ ! $(echo $added_keys | grep -o -e id_rsa) ]; then
+    ssh-add "$HOME/.ssh/id_rsa">/dev/null
+fi
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
